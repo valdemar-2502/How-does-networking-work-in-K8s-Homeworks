@@ -26,11 +26,11 @@
 
 ## Решение:
 
-Манифесты лежат в каталоге `netpol/`:
+## Манифесты:
 
-- [00-namespace.yaml](): namespace `app`;
-- [10-apps.yaml](): Deployment и Service для frontend, backend и cache;
-- [20-policies.yaml](): сетевые политики.
+- [00-namespace.yaml](https://github.com/valdemar-2502/How-does-networking-work-in-K8s-Homeworks/blob/main/00-namespace.yaml): namespace `app`;
+- [10-apps.yaml](https://github.com/valdemar-2502/How-does-networking-work-in-K8s-Homeworks/blob/main/10-apps.yaml): Deployment и Service для frontend, backend и cache;
+- [20-policies.yaml](https://github.com/valdemar-2502/How-does-networking-work-in-K8s-Homeworks/blob/main/20-policies.yaml): сетевые политики.
 
 Имя namespace `App` из условия записано строчными буквами (`app`): Kubernetes не допускает заглавных букв в именах namespace.
 
@@ -81,7 +81,7 @@ done
 
 ### Сетевые политики
 
-Файл [20-policies.yaml]() содержит три политики:
+Файл [20-policies.yaml](https://github.com/valdemar-2502/How-does-networking-work-in-K8s-Homeworks/blob/main/20-policies.yaml) содержит три политики:
 
 1. `default-deny-ingress` запрещает весь входящий трафик ко всем подам namespace `app` (пустой `podSelector`, список `ingress` не задан).
 2. `allow-frontend-to-backend` разрешает входящий трафик на поды `app=backend` только от подов `app=frontend` по порту 80/TCP.
