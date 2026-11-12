@@ -1,0 +1,86 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app: frontend}
+  template:
+    metadata:
+      labels: {app: frontend}
+    spec:
+      containers:
+      - name: multitool
+        image: wbitt/network-multitool:minimal
+        imagePullPolicy: IfNotPresent
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  namespace: app
+spec:
+  selector: {app: frontend}
+  ports:
+  - port: 80
+    targetPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app: backend}
+  template:
+    metadata:
+      labels: {app: backend}
+    spec:
+      containers:
+      - name: multitool
+        image: wbitt/network-multitool:minimal
+        imagePullPolicy: IfNotPresent
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  namespace: app
+spec:
+  selector: {app: backend}
+  ports:
+  - port: 80
+    targetPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cache
+  namespace: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app: cache}
+  template:
+    metadata:
+      labels: {app: cache}
+    spec:
+      containers:
+      - name: multitool
+        image: wbitt/network-multitool:minimal
+        imagePullPolicy: IfNotPresent
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cache
+  namespace: app
+spec:
+  selector: {app: cache}
+  ports:
+  - port: 80
+    targetPort: 80
